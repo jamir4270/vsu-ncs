@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import logo from "../../../public/logo.png";
 import {
   Card,
   CardAction,
@@ -15,7 +17,8 @@ import { Label } from "@/components/ui/label";
 
 export default function LogInPage() {
   return (
-    <div>
+    <div className="flex flex-col gap-4">
+      <Image src={logo} alt="vsu-ncs-logo" height={380} width={380} />
       <Card className="w-screen max-w-sm">
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>

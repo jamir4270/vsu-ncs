@@ -29,12 +29,11 @@ export default function StudentLayout({
     { title: "Notifications", url: "#" },
   ];
   return (
-    <SidebarProvider>
-      <AppSidebar items={items} />
-      <main>
-        <SidebarTrigger />
-        {children}
-      </main>
-    </SidebarProvider>
+    <div className="flex">
+      <SidebarProvider>
+        <AppSidebar items={items} />
+        <main className="flex-1">{children}</main>
+      </SidebarProvider>
+    </div>
   );
 }

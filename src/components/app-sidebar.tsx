@@ -16,7 +16,7 @@ type AppSidebarProps = {
 
 export default function AppSidebar({ items }: AppSidebarProps) {
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="none">
       <SidebarHeader>VSU NCS</SidebarHeader>
       <SidebarContent>
         <SidebarGroup>

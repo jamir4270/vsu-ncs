@@ -32,7 +32,7 @@ export default function StudentLayout({
     <div className="flex">
       <SidebarProvider>
         <AppSidebar items={items} />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 bg-[#F8F9FA]">{children}</main>
       </SidebarProvider>
     </div>
   );

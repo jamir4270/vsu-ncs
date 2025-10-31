@@ -13,7 +13,7 @@ import { TriangleAlert } from "lucide-react";
 
 export default function StudentDashBoard() {
   return (
-    <div className="flex flex-col w-full p-10 gap-5">
+    <div className="flex flex-col w-full p-8 gap-5">
       <div className="flex flex-col gap-2">
         <h1 className="text-[#0A58A3] text-2xl">Welcome, Maria Santos!</h1>
         <p className="text-[#6C757D]">

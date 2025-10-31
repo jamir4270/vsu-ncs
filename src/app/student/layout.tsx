@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/app-sidebar";
+import { LayoutDashboard, History, Bell } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,17 +25,16 @@ export default function StudentLayout({
   children: React.ReactNode;
 }>) {
   const items = [
-    { title: "Dashboard", url: "#" },
-    { title: "Conduct History", url: "#" },
-    { title: "Notifications", url: "#" },
+    { title: "Dashboard", url: "#", icon: LayoutDashboard },
+    { title: "Conduct History", url: "#", icon: History },
+    { title: "Notifications", url: "#", icon: Bell },
   ];
   return (
-    <SidebarProvider>
-      <AppSidebar items={items} />
-      <main>
-        <SidebarTrigger />
-        {children}
-      </main>
-    </SidebarProvider>
+    <div className="flex h-screen">
+      <SidebarProvider>
+        <AppSidebar items={items} />
+        <main className="flex-1 bg-[#F8F9FA] overflow-y-auto">{children}</main>
+      </SidebarProvider>
+    </div>
   );
 }

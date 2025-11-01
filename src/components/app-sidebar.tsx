@@ -11,6 +11,7 @@ import {
 import { SidebarProps } from "@/types";
 import { BriefcaseMedical, LogOut } from "lucide-react";
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import Link from "next/link";
 
 type AppSidebarProps = {
   items: SidebarProps[];
@@ -39,10 +40,10 @@ export default function AppSidebar({ items }: AppSidebarProps) {
             {items.map(({ title, url, icon: Icon }) => (
               <SidebarMenuItem key={title}>
                 <SidebarMenuButton asChild>
-                  <a href={url} className="flex items-center">
+                  <Link href={url} className="flex items-center">
                     <Icon className="mr-3 h-5 w-5" />
                     <span className="text-[16px]">{title}</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}

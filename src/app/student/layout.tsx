@@ -25,9 +25,13 @@ export default function StudentLayout({
   children: React.ReactNode;
 }>) {
   const items = [
-    { title: "Dashboard", url: "#", icon: LayoutDashboard },
-    { title: "Conduct History", url: "#", icon: History },
-    { title: "Notifications", url: "#", icon: Bell },
+    { title: "Dashboard", url: "/student/dashboard", icon: LayoutDashboard },
+    {
+      title: "Conduct History",
+      url: "/student/conduct-history",
+      icon: History,
+    },
+    { title: "Notifications", url: "/student/notifications", icon: Bell },
   ];
   return (
     <div className="flex h-screen">

@@ -1,18 +1,9 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
-import { ArrowUpDown } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Badge } from "@/components/ui/badge";
+import React from "react";
+// dropdown-menu not used in this file
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -40,6 +31,26 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "type",
     header: "Type",
+    cell: ({ row }) => {
+      const t = row.getValue("type") as Payment["type"];
+      const base =
+        "inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium";
+      if (t === "Merit") {
+        return (
+          <Badge className={`${base} bg-[#00C950] text-white`}>Merit</Badge>
+        );
+      }
+      if (t === "Demerit") {
+        return (
+          <Badge className={`${base} bg-[#FF6900] text-white`}>Demerit</Badge>
+        );
+      }
+      return (
+        <Badge className={`${base} bg-red-600 text-white`}>
+          Serious Infraction
+        </Badge>
+      );
+    },
   },
   {
     accessorKey: "description",

@@ -23,6 +23,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+import { Badge, badgeVariants } from "@/components/ui/badge";
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -75,54 +77,64 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex items-center py-4">
-        <Input
-          placeholder="Search faculty..."
-          value={
-            (table.getColumn("faculty_name")?.getFilterValue() as string) ?? ""
-          }
-          onChange={(event) =>
-            table.getColumn("faculty_name")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-4">
-              {type} <ChevronDown className="ml-2 h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>Filter by Type</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuCheckboxItem
-              checked={type === "All Type"}
-              onCheckedChange={() => filterByType("All Type")}
-            >
-              All Types
-            </DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem
-              checked={type === "Merit"}
-              onCheckedChange={() => filterByType("Merit")}
-            >
-              Merit
-            </DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem
-              checked={type === "Demerit"}
-              onCheckedChange={() => filterByType("Demerit")}
-            >
-              Demerit
-            </DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem
-              checked={type === "Serious Infraction"}
-              onCheckedChange={() => filterByType("Serious Infraction")}
-            >
-              Serious Infraction
-            </DropdownMenuCheckboxItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+      <div className="flex items-center justify-between">
+        <div className="text-[18px]">
+          <h1 className="font-semibold">Conduct Records</h1>
+          <p className="text-[#6C757D]">{`${table.getRowCount()} record(s) found`}</p>
+        </div>
+        <div className="flex items-center">
+          <Input
+            placeholder="Search faculty..."
+            value={
+              (table.getColumn("faculty_name")?.getFilterValue() as string) ??
+              ""
+            }
+            onChange={(event) =>
+              table
+                .getColumn("faculty_name")
+                ?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm"
+          />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="ml-4">
+                {type} <ChevronDown className="ml-2 h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
+              <DropdownMenuLabel>Filter by Type</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuCheckboxItem
+                checked={type === "All Type"}
+                onCheckedChange={() => filterByType("All Type")}
+              >
+                All Types
+              </DropdownMenuCheckboxItem>
+              <DropdownMenuCheckboxItem
+                checked={type === "Merit"}
+                onCheckedChange={() => filterByType("Merit")}
+              >
+                Merit
+              </DropdownMenuCheckboxItem>
+              <DropdownMenuCheckboxItem
+                checked={type === "Demerit"}
+                onCheckedChange={() => filterByType("Demerit")}
+              >
+                Demerit
+              </DropdownMenuCheckboxItem>
+              <DropdownMenuCheckboxItem
+                checked={type === "Serious Infraction"}
+                onCheckedChange={() => filterByType("Serious Infraction")}
+              >
+                Serious Infraction
+              </DropdownMenuCheckboxItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
-      <div className="overflow-hidden rounded-md border">
+
+      <div className="overflow-hidden rounded-md border mt-8">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

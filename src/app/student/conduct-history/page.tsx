@@ -81,7 +81,7 @@ export default async function StudentDashBoard() {
           Complete record of all merits, demerits, and serious infractions.
         </p>
       </div>
-      <div className="container mx-auto py-10">
+      <div className="container mx-auto p-4 bg-white rounded-2xl">
         <DataTable columns={columns} data={data} />
       </div>
     </div>

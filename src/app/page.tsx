@@ -5,14 +5,15 @@ import Link from "next/link";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import logo from "../../public/logo.png";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import {
+  ArrowRight,
+  Users,
+  ClipboardCheck,
+  ShieldCheck,
+  Database,
+} from "lucide-react";
 
 export default function HomePage() {
   const year = new Date().getFullYear();
@@ -33,45 +34,97 @@ export default function HomePage() {
 
       <main className="flex-1 flex flex-col items-center justify-center py-12 px-6">
         {/* Hero */}
-        <section className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
+        <section className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
             <Badge>Official</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mt-4">
+            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
               VSU Nursing Conduct System (VSU NCS)
             </h2>
-            <p className="mt-4 text-muted-foreground">
+            <p className="text-lg text-muted-foreground max-w-xl">
               A centralized platform for the Visayas State University Faculty of
               Nursing to transparently and efficiently manage student merits and
               demerits.
             </p>
 
-            <div className="mt-6">
+            <div className="flex items-center gap-4">
               <Link href="/auth">
                 <Button size="lg">Login</Button>
               </Link>
+              <a href="#features" className="inline-flex items-center">
+                <Button variant="ghost" size="lg">
+                  Learn more <ArrowRight className="ml-2" />
+                </Button>
+              </a>
             </div>
           </div>
 
-          <div className="flex justify-center">
-            <Card className="max-w-md w-full">
-              <CardHeader>
-                <CardTitle>Why VSU NCS</CardTitle>
-                <CardDescription>
-                  Secure, transparent, and easy management of student conduct
-                  records.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex justify-center">
-                  <Image
-                    src={logo}
-                    alt="VSU NCS logo"
-                    width={260}
-                    height={260}
-                  />
+          <div>
+            <div className="rounded-2xl bg-linear-to-tr from-sky-50 to-white p-8 shadow-lg">
+              <div className="flex items-center gap-4">
+                <Image src={logo} alt="VSU NCS logo" width={120} height={120} />
+                <div>
+                  <h3 className="text-lg font-semibold">Why VSU NCS</h3>
+                  <p className="text-sm text-muted-foreground max-w-md">
+                    Secure, transparent, and efficient management of student
+                    conduct records across the College of Nursing.
+                  </p>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-md bg-white/60 shadow-sm">
+                    <Users className="size-5 text-sky-600" />
+                  </div>
+                  <div>
+                    <p className="font-medium">Students</p>
+                    <p className="text-sm text-muted-foreground">
+                      View your full conduct history and cumulative demerit
+                      hours anytime.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-md bg-white/60 shadow-sm">
+                    <ClipboardCheck className="size-5 text-emerald-600" />
+                  </div>
+                  <div>
+                    <p className="font-medium">Faculty</p>
+                    <p className="text-sm text-muted-foreground">
+                      Log merits and demerits quickly and access a student
+                      conduct history.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-md bg-white/60 shadow-sm">
+                    <ShieldCheck className="size-5 text-rose-600" />
+                  </div>
+                  <div>
+                    <p className="font-medium">Administrators</p>
+                    <p className="text-sm text-muted-foreground">
+                      Oversee reports, manage accounts, and review serious
+                      infractions centrally.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-md bg-white/60 shadow-sm">
+                    <Database className="size-5 text-violet-600" />
+                  </div>
+                  <div>
+                    <p className="font-medium">Reliable Data</p>
+                    <p className="text-sm text-muted-foreground">
+                      A single source of truth for student conduct with
+                      role-based access.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

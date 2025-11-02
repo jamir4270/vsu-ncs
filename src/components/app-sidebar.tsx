@@ -20,7 +20,7 @@ type AppSidebarProps = {
 export default function AppSidebar({ items }: AppSidebarProps) {
   return (
     <Sidebar
-      collapsible="none"
+      collapsible="offcanvas"
       className="h-screen flex flex-col border-r border-gray-300"
     >
       <SidebarHeader className="p-5 border-b border-gray-300">
@@ -63,7 +63,7 @@ export default function AppSidebar({ items }: AppSidebarProps) {
         </div>
         <SidebarMenuItem className="w-full">
           <SidebarMenuButton asChild>
-            <a href="#" className="flex items-center justify-center">
+            <a href="/auth" className="flex items-center justify-center">
               <LogOut className="mr-3 h-5 w-5" />
               <span className="text-[16px]">Log out</span>
             </a>

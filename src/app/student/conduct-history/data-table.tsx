@@ -76,13 +76,13 @@ export function DataTable<TData, TValue>({
   }
 
   return (
-    <div>
-      <div className="flex items-center justify-between">
+    <div className="space-y-6">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="text-[18px]">
           <h1 className="font-semibold">Conduct Records</h1>
           <p className="text-[#6C757D]">{`${table.getRowCount()} record(s) found`}</p>
         </div>
-        <div className="flex items-center">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
           <Input
             placeholder="Search faculty..."
             value={
@@ -94,15 +94,15 @@ export function DataTable<TData, TValue>({
                 .getColumn("faculty_name")
                 ?.setFilterValue(event.target.value)
             }
-            className="max-w-sm"
+            className="w-full sm:max-w-sm"
           />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="ml-4">
+              <Button variant="outline" className="w-full sm:w-auto">
                 {type} <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
+            <DropdownMenuContent className="w-[200px]">
               <DropdownMenuLabel>Filter by Type</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuCheckboxItem
@@ -134,14 +134,14 @@ export function DataTable<TData, TValue>({
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-md border mt-8">
+      <div className="overflow-x-auto rounded-md border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} className="whitespace-nowrap">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -162,7 +162,7 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell key={cell.id} className="whitespace-nowrap">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

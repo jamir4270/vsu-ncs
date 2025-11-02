@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/app-sidebar";
-import { LayoutDashboard, History, Bell } from "lucide-react";
+import { LayoutDashboard, History, Bell, BriefcaseMedical } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,8 +36,20 @@ export default function StudentLayout({
   return (
     <div className="flex h-screen">
       <SidebarProvider>
+        {/* Mobile Header */}
+        <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 h-16 border-b bg-white md:hidden">
+          <SidebarTrigger />
+          <div className="flex items-center gap-2">
+            <BriefcaseMedical className="h-6 w-6" />
+            <span className="font-semibold">VSU NCS</span>
+          </div>
+          <div className="w-10" /> {/* Spacer to center logo */}
+        </div>
+
         <AppSidebar items={items} />
-        <main className="flex-1 bg-[#F8F9FA] overflow-y-auto">{children}</main>
+        <main className="flex-1 bg-[#F8F9FA] overflow-y-auto pt-16 md:pt-0">
+          {children}
+        </main>
       </SidebarProvider>
     </div>
   );

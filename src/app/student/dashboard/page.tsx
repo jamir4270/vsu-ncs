@@ -19,7 +19,7 @@ export default function StudentDashBoard() {
           Here&apos;s an overview of your conduct record this semester.
         </p>
       </div>
-      <div className="flex w-full gap-5 ">
+      <div className="flex flex-col sm:flex-row w-full gap-5">
         <Card className="flex-1">
           <CardHeader>
             <CardTitle>Total Demerit Hours</CardTitle>

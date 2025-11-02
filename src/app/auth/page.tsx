@@ -1,8 +1,10 @@
 "use client";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import logo from "../../../public/logo.png";
+import { login } from "../auth/actions";
 import {
   Card,
   CardContent,
@@ -16,16 +18,31 @@ import { Label } from "@/components/ui/label";
 
 export default function LogInPage() {
   const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // 2. Create the form submission handler
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
-    // 3. Stop the form from reloading the page
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsLoading(true);
+    setError(null);
 
-    // ... your login logic would go here ...
+    try {
+      const formData = new FormData(event.currentTarget);
+      const result = await login(formData);
 
-    // 4. Use an absolute path (starts with '/')
-    router.push("/student/dashboard");
+      if (result.error) {
+        setError(result.error);
+        return;
+      }
+
+      if (result.success && result.redirectTo) {
+        router.push(result.redirectTo);
+      }
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -47,9 +64,12 @@ export default function LogInPage() {
                   <Label htmlFor="email">Email</Label>
                   <Input
                     id="email"
+                    name="email"
                     type="email"
                     placeholder="m@example.com"
                     required
+                    disabled={isLoading}
+                    aria-describedby="email-error"
                   />
                 </div>
                 <div className="grid gap-2">
@@ -62,13 +82,28 @@ export default function LogInPage() {
                       Forgot your password?
                     </a>
                   </div>
-                  <Input id="password" type="password" required />
+                  <Input
+                    id="password"
+                    name="password"
+                    type="password"
+                    required
+                    disabled={isLoading}
+                    aria-describedby="password-error"
+                  />
                 </div>
+                {error && (
+                  <div
+                    className="text-sm font-medium text-red-500"
+                    role="alert"
+                  >
+                    {error}
+                  </div>
+                )}
               </div>
             </CardContent>
             <CardFooter className="flex-col gap-2">
-              <Button type="submit" className="w-full">
-                Login
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? "Logging in..." : "Login"}
               </Button>
             </CardFooter>
           </form>

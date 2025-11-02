@@ -36,14 +36,13 @@ export default function StudentLayout({
   return (
     <div className="flex h-screen">
       <SidebarProvider>
-        {/* Mobile Header */}
         <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 h-16 border-b bg-white md:hidden">
           <SidebarTrigger />
           <div className="flex items-center gap-2">
             <BriefcaseMedical className="h-6 w-6" />
             <span className="font-semibold">VSU NCS</span>
           </div>
-          <div className="w-10" /> {/* Spacer to center logo */}
+          <div className="w-10" />
         </div>
 
         <AppSidebar items={items} />
